@@ -1,19 +1,13 @@
 package com.dxctraining;
 
-
-
-
 public class Student{
 	private String rollno;
 	private int age; 
-	private Course course;
-		
 	
-	
-	public Student(String rollno,int age,Course course){
+	public Student(String rollno,int age){
 		this.rollno=rollno;
 		this.age=age;
-		this.course=course;
+		
 	}
 	
 	public String getRollNo() {
@@ -32,19 +26,9 @@ public int getAge() {
 		this.age=age;
 	}	
 	
-	
-	
-
-	public Course getCourse() {
-		return course;
-	}
-
-	public void setCourse(Course course) {
-		this.course = course;
-	}
 	public int hashCode() {
-		String str=(String)rollno;
-		return rollno;
+		
+		return Integer.parseInt(rollno);
 	}
 	public boolean equals(Object arg) {
 		if(this==arg) {

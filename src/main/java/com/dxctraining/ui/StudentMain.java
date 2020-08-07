@@ -12,92 +12,33 @@ import java.util.*;
 
 public class StudentMain {
 	private Set<Student> store = new HashSet<>();
+	Iterator<Student> iterator=store.iterator();
 
 	public static void main(String[] args) {
-		StudentMain demo = new StudentMain();
-		demo.runApp();
+		StudentMain run = new StudentMain();
+		run.runApp();
 	}
 
 	public void runApp() {
-		try {
-			
-			Course course1 = new Course(1, "java");
-			Course course2 = new Course(2, "python");
-			
-			ElectronicsStudent student1 = new ElectronicsStudent("21", 21,course1, "multimeter");
-			
+		
+			Student student1 = new Student("21", 21);
 			store.add(student1);
-			ComputerScienceStudent student2 = new ComputerScienceStudent("22", 21, course2, "dell");
+			Student student2 = new Student("22", 21);
 			store.add(student2);
-			ComputerScienceStudent student3 = new ComputerScienceStudent("23", 23, course2, "asus");
+		    Student student3 = new Student("23", 23);
 			store.add(student3);
-			ElectronicsStudent student4 = new ElectronicsStudent("24", 24,course1, "diode");
+			Student student4 = new Student("24", 24);
 			store.add(student4);
 
 			
-		    
-			System.out.println("*******displaying all students********"); 
-			
-			displayAll();
-		} catch (InvalidStudentArgumentException e) {
-			System.out.println("student is null");
-		} catch (Exception e) {
-			System.out.println("some error occurred in program");
-		}
-
-	}
-
-	
-
-	public void displayAll() {
-		Set<String> set = store.keySet();
-		for (String key : set) {
-			Student current = store.get(key);
-			boolean isCSGuy = current instanceof ComputerScienceStudent;
-			if (isCSGuy) {
-				ComputerScienceStudent cs = (ComputerScienceStudent) current;
-				int i=cs.getAge();
+		  
+		   while(iterator.hasNext()) {		 
+				Student student = iterator.next();
+				int i=student.getAge();
 				if(i>21)
-				display(cs);
-			}
-
-			boolean isECEGuy = current instanceof ElectronicsStudent;
-			if (isECEGuy) {
-				ElectronicsStudent es = (ElectronicsStudent) current;
-				int i=es.getAge();
-				if(i>21)
-				display(es);
-			}
-
-		}
-
+				System.out.println("Age=" + student.getAge() + " " + "Rollno"+ student.getRollNo());
+		   }
 	}
-
-	
-
-	public void displayStudent(Student student) {
-		
-		String rollno = student.getRollNo();
-		int age = student.getAge();
-		
-		System.out.println("roll no is " + rollno + " age is " + age  );
-		Course course = student.getCourse();
-		System.out.println("student pursuing course=" + course.getId() + " " + course.getName());
-	}
-
-	public void display(ElectronicsStudent student) {
-		
-		displayStudent(student);
-		System.out.println("gadget available=" + student.getGadgetAlloted());
-
-	}
-
-	public void display(ComputerScienceStudent student) {
-		
-		displayStudent(student);
-		System.out.println("laptop available=" + student.getLaptopAlloted());
-
-	}
-	
-
 }
+			  
+		   
