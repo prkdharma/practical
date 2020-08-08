@@ -8,12 +8,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.*;
 
-
-
 public class StudentMain {
-	private Set<Student> store = new HashSet<>();
-	Iterator<Student> iterator=store.iterator();
-	List<Student> list=new ArrayList<>();
+	Map<String, Student> store = new HashMap<>();
+	Set<Student> seteven = new HashSet<>();
+	Set<Student> setodd = new LinkedHashSet<>();
+	List<String> allrollno = new ArrayList<>();
 
 	public static void main(String[] args) {
 		StudentMain run = new StudentMain();
@@ -21,26 +20,30 @@ public class StudentMain {
 	}
 
 	public void runApp() {
-		    
-			Student student1 = new Student("21", 21);
-			store.add(student1);
-			Student student2 = new Student("22", 21);
-			store.add(student2);
-		    Student student3 = new Student("23", 23);
-			store.add(student3);
-			Student student4 = new Student("24", 24);
-			store.add(student4);
 
-			
-		  
-		   while(iterator.hasNext()) {		 
-				Student student = iterator.next();
-				int i=student.getAge();
-				if(i>21)
-				list.add(student);
-				System.out.println("Age=" + student.getAge() + " " + "Rollno"+ student.getRollNo());
-		   }
+		Student student1 = new Student("21", 21);
+		store.put("21", student1);
+		Student student2 = new Student("22", 21);
+		store.put("22", student2);
+		Student student3 = new Student("23", 23);
+		store.put("23", student3);
+		Student student4 = new Student("24", 24);
+		store.put("24", student4);
+
+		Set<String> keys = store.keySet();
+		for (String k : keys) {
+			Student fetched = store.get(k);
+			int i = fetched.getAge();
+			String j = fetched.getRollNo();
+			allrollno.add(j);
+			if (i % 2 == 0) {
+				seteven.add(fetched);
+			}
+			if (i % 2 != 0) {
+				setodd.add(fetched);
+			}
+			System.out.println("Age=" + fetched.getAge() + " " + "Rollno" + fetched.getRollNo());
+		}
+
+	}
 }
-}
-			  
-		   
